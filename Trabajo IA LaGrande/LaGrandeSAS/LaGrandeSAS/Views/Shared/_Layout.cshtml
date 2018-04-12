@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    @Styles.Render("~/Content/css")    
+    <link href="~/Content/materialize/css/materialize.min.css" rel="stylesheet" />
+    <link href="~/Content/materialize/css/animate.min.css" rel="stylesheet" />
+    <script src="~/Scripts/materialize/materialize.min.js"></script>
+    <script>
+        var $J = jQuery.noConflict();
+        $J(document).ready(function () {
+            $J('.button-collapse').sideNav();
+        });
+        
+        $J(document).ready(function () {
+            $J('.slider').slider();
+        });
+
+        autoplay()
+        function autoplay() {
+            $J('.slider').slider('next');
+            setTimeout(autoplay, 4500);
+        }
+        function lanzarmodal() {
+            $J('#modal1').openModal();
+        };
+    </script>
+  
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top deep-orange">
+        <div class="nav-wrapper">
+            <a href="#" data-target="" data-activates="mobile" class="button-collapse"><span class="glyphicon glyphicon-list" style="margin-left:20px;"></span></a>
+            @Html.ActionLink("La Grande S.A.S", "Index", "Negocio", new { area = "" }, new { style = "margin-left:50px;"} )
+
+            <ul class="right hide-on-med-and-down" style="margin-right:20px;">
+                <li>@Html.ActionLink("Tienda", "Index", "Negocio")</li>
+                             
+               @{
+                   Usuario nombre = (Usuario)Session["Usuario"];
+                   if (nombre != null)
+                   {
+                       if (nombre.Rol == "Administrador")
+                       {
+                        <li>@Html.ActionLink("Inventario", "Index", "Inventario")</li>
+                       }
+                    <li>@Html.ActionLink("Hola " + nombre.Nombres + "!", "Details", "Acceso")</li>
+                    <li>@Html.ActionLink("Salir", "Salir", "Acceso")</li>
+                   }
+                   else
+                   {
+                    <li>@Html.ActionLink("Registrar", "Create", "Acceso")</li>
+                    <li>@Html.ActionLink("Acceder", "Login", "Acceso")</li>
+                   }
+
+            }
+            </ul>
+            
+
+            <ul class="side-nav" id="mobile">
+                <li>@Html.ActionLink("Tienda", "Index", "Negocio")</li>
+
+                @{
+                    Usuario usuar = (Usuario)Session["Usuario"];
+                    if (usuar != null)
+                    {
+                        if (usuar.Rol == "Administrador")
+                        {
+                            <li>@Html.ActionLink("Inventario", "Index", "Inventario")</li>
+                        }
+                        <li>@Html.ActionLink("Hola " + usuar.Nombres + "!", "Details", "Acceso")</li>
+                        <li>@Html.ActionLink("Salir", "Salir", "Acceso")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Registrar", "Create", "Acceso")</li>
+                        <li>@Html.ActionLink("Acceder", "Login", "Acceso")</li>
+                    }
+
+                }
+            </ul>
+            <a href="#" data-target="" data-activates="Usuario" class="button-collapse"><span class="glyphicon glyphicon-user" style="margin-left:20px;"></span></a>
+            <ul class="right side-nav" id="Usuario">
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </div>
+    </nav>
+    <div>        
+       
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h6>Carrito de compras</h6>
+                <table class="responsive-table">
+                    <tr>
+                        <td>Articulo</td>
+                        <td>Cantidad</td>
+                        <td>Precio unitario</td>
+                        <td>Descuento</td>
+                        <td>PrecioTotal</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">Valor total: @Html.Label("")</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><input  type="submit" value="Realizar Compra" class="btn" /></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Salir</a>
+            </div>
+        </div>
+
+        <div class="slider">
+            <ul class="slides">
+                <li>
+                    <img src="~/Content/Imagenes/electrodomesticos.png"> <!-- random image -->
+                    <div class="caption center-align">
+                        <h5>Somos los mejor opción para ti! </h5>
+                        <p>SOMOS </p>
+                        <h3 class="light grey-text text-lighten-3">LA GRANDE S.A.S</h3>
+                    </div>
+                </li>
+                <li>
+                    <img src="~/Content/Imagenes/telefonos.jpg"> <!-- random image -->
+                    <div class="caption left-align">
+                        <h3>Comunicate con el mundo</h3>
+                        <h5 class="light grey-text text-lighten-3">Tenemos gran variedad de celulares de alta gamma.</h5>
+                    </div>
+                </li>
+                <li>
+                    <img src="~/Content/Imagenes/Automoviles.png"> <!-- random image -->
+                    <div class="caption right-align">
+                        <h3>Conduce hacia tu futuro en un vehiculo futurista</h3>
+                        <h5 class="light grey-text text-lighten-3">Vehiculos electricos y de tecnologia de punta!</h5>
+                    </div>
+                </li>
+                <li>
+                    <img src="~/Content/Imagenes/electrodomesticos.png"> <!-- random image -->
+                    <div class="caption center-align">
+                        <h3>Lo mejor en electrodomesticos para el hogar!</h3>
+                        <h5 class="light grey-text text-lighten-3">Aquí encuentra lo que necesita.</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col s2" >
+                <ul class="collection">
+                    <li class="collection-item"><spam class="glyphicon glyphicon-shopping-cart">@Html.ActionLink("Tienda", "Index", "Negocio")</spam></li> 
+                    @{
+                        if (usuar != null)
+                        {
+                            <li class="collection-item"><spam class="glyphicon glyphicon glyphicon-user">@Html.ActionLink("Usuario", "Details", "Acceso")</spam></li>
+
+
+                            <li class="collection-item"><a title="Search"><spam class="glyphicon glyphicon-stats"></spam>Historial Compras</a></li>
+                        }
+                    }
+                </ul>
+
+            </div>
+            <div class="col s10" >
+                @RenderBody()
+
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large red" title="Carrito de Compras">
+                        <spam class="glyphicon glyphicon-shopping-cart"></spam></a>
+                    <ul>
+                        <li><a class="btn-floating btn-large green" title="Limpiar carrito">
+                                <spam class="glyphicon glyphicon-compressed"></spam></a></li>
+
+                        <li><a class="btn-floating btn-large yellow darken-1" 
+                               title="Realizar Compra" onclick="lanzarmodal()" >
+                            <spam class="glyphicon glyphicon-check"></spam></a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

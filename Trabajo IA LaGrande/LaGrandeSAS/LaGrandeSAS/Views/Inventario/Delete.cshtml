@@ -1,0 +1,95 @@
+﻿@model LaGrandeSAS.Inventarios
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h6>Eliminar producto</h6>
+
+<h6>Esta seguro de eliminar este producto?</h6>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoBarras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoBarras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreProducto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorias)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bodega)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bodega)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorUnidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorUnidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unidades)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unidades)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorDescuentounidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorDescuentounidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorUndDescuento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorUndDescuento)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a productos", "Index")
+        </div>
+    }
+</div>

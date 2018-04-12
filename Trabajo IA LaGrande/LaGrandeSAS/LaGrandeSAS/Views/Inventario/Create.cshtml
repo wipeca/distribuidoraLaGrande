@@ -1,0 +1,137 @@
+﻿@model LaGrandeSAS.Inventarios
+
+@{
+    ViewBag.Title = "Agregar producto al inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var Listado = new List<SelectListItem>()
+    {
+        new SelectListItem()
+        {
+            Text = "Uno", Value="uno"
+        }
+    };
+}
+<script>
+    function calc()
+    {
+        var vu = document.getElementById("ValorUnidad");
+        var cantidad = document.getElementById("unidades");
+        var operacion = vu.value * cantidad.value;
+        document.getElementById('ValorTotal').value = (operacion);
+    }
+    function calcV() {
+        var vu = document.getElementById("ValorUnidad");
+        var cantidad = document.getElementById("ValorDescuentounidad");
+        var operacion = vu.value - (vu.value * (cantidad.value / 100));
+        document.getElementById('ValorUndDescuento').value = (operacion);
+    }
+
+    function init() {
+        var inputFile = document.getElementById('image1');
+        inputFile.addEventListener('change', mostrarImagen, false);
+    }
+
+    function mostrarImagen(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            var img = document.getElementById('imagen');
+            img.src = event.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+    window.addEventListener('load', init, false);
+</script>
+
+<h6>Agregar Producto a Inventario</h6>
+
+@using (Html.BeginForm("Create", "Inventario", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="input-field col s3">
+                @Html.EditorFor(model => model.CodigoBarras, new { htmlAttributes = new { @class = "validate", @type = "number", @style = "width:100px;" } })
+                @Html.Label("Codigo de Barras")
+                @Html.ValidationMessageFor(model => model.CodigoBarras, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-field col s3">
+                @Html.EditorFor(model => model.NombreProducto, new { htmlAttributes = new { @class = "validate" } })
+                @Html.ValidationMessageFor(model => model.NombreProducto, "", new { @class = "text-danger" })
+                @Html.Label("Nombre del Producto")
+            </div>
+
+            <div class="input-field col s3">
+                @Html.Label("Categoria")
+                @Html.EditorFor(model => model.Categorias, new { htmlAttributes = new { @class = "validate" } })
+                @*@Html.DropDownListFor(model => model.Categorias, new SelectList(new[] { "1","2","3"}), htmlAttributes: new { @type="select"})*@
+                @Html.ValidationMessageFor(model => model.Categorias, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="input-field col s3">
+                @Html.Label("Bodega")
+
+                @Html.EditorFor(model => model.Bodega, new { htmlAttributes = new { @class = "validate" } })
+                @Html.ValidationMessageFor(model => model.Bodega, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s2">
+                @Html.Label("Valor de la Unidad")
+                @Html.EditorFor(model => model.ValorUnidad, new { htmlAttributes = new { @class = "validate" } })
+                @Html.ValidationMessageFor(model => model.ValorUnidad, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="input-field col s2">
+                @Html.Label("Unidades")
+                @Html.EditorFor(model => model.unidades, new { htmlAttributes = new { @class = "validate" } })
+                @Html.ValidationMessageFor(model => model.unidades, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="input-field col s2">
+                @Html.Label("Total")
+                <input type="number" readonly="readonly" class="validate" style="color:red;" name="ValorTotal" id="ValorTotal" onfocus="calc()" onblur="calc()" />
+                @*@Html.EditorFor(model => model.ValorTotal, new { htmlAttributes = new { @class = "validate" } })*@
+                @Html.ValidationMessageFor(model => model.ValorTotal, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="input-field col s2">
+                @Html.Label("Descuento por unidad")
+                @Html.EditorFor(model => model.ValorDescuentounidad, new { htmlAttributes = new { @class = "validate" } })
+            </div>
+            <div class="input-field col s2">
+                @Html.Label("Valor Und con Descuento")
+                <input type="number" readonly="readonly" class="validate" style="color:red;" name="ValorUndDescuento" id="ValorUndDescuento" onfocus="calcV()" onblur="calcV()" />
+                @*@Html.EditorFor(model => model.ValorTotal, new { htmlAttributes = new { @class = "validate" } })*@
+                @Html.ValidationMessageFor(model => model.ValorUndDescuento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4" style="text-align:left;">
+                <input type="file" id="image1" name="image1" class="btn" />
+                <br />
+                <input type="submit" value="Registrar" class="btn btn-default" />@Html.ActionLink("Ver Inventario", "Index")
+            </div>
+            <div class="input-field col s8">
+                <img id="imagen" class="responsive-img" src="~/Content/Imagenes/ImagenProducto.png" style="width:100px; height:100px;" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+   
+</div>
+

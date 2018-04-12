@@ -1,0 +1,95 @@
+﻿@model LaGrandeSAS.Inventarios
+
+@{
+    ViewBag.Title = "Detalles producto en inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<label>Detalle del Producto:</label><label style="color:green;">@Html.DisplayFor(model => model.NombreProducto, new { @style = "color:green;" })</label>
+
+<div>
+    <div class="row">
+        <div class="col s4" style="border:1px solid black; border-radius:5px" height="350">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Codigo de Barra")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CodigoBarras)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Nombre")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NombreProducto)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Categoria")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Categorias)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Bodega")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Bodega)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Valor Unidad")
+                </dt>
+
+                <dd>
+                    $@Html.DisplayFor(model => model.ValorUnidad)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Unidades")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.unidades)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Total")
+                </dt>
+
+                <dd>
+                    $@Html.DisplayFor(model => model.ValorTotal)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Descuento")
+                </dt>
+
+                <dd>
+                    %@Html.DisplayFor(model => model.ValorDescuentounidad)
+                </dd>
+                <dt>
+                    @Html.DisplayName("Valor con Descuento")
+                </dt>
+
+                <dd>
+                    $@Html.DisplayFor(model => model.ValorUndDescuento)
+                </dd>
+            </dl>
+        </div>
+        <div class="col s4" height="350" style="margin-left:5px;">
+            <img src="data:image;base64,@System.Convert.ToBase64String(Model.ImagenProducto)" style="border-radius:5px;
+            border:1px solid green" width="150" height="150" />
+        </div>
+    </div>
+</div>
+<p>
+   
+    @Html.ActionLink("Volver a productos", "Index")
+</p>

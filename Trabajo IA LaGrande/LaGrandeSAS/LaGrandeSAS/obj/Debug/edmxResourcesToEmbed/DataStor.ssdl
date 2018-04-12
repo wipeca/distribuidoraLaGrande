@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LagrandeBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Compras">
+    <Key>
+      <PropertyRef Name="CodigoCompra" />
+    </Key>
+    <Property Name="CodigoCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cliente" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FechaCompraCliente" Type="datetime" Nullable="false" />
+    <Property Name="Producto" Type="int" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="CostoUnidad" Type="int" Nullable="false" />
+    <Property Name="CostoTotal" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodigoBarras" Type="int" Nullable="false" />
+    <Property Name="NombreProducto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Categorias" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Bodega" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ValorUnidad" Type="bigint" Nullable="false" />
+    <Property Name="unidades" Type="int" Nullable="false" />
+    <Property Name="ValorTotal" Type="bigint" Nullable="false" />
+    <Property Name="ValorDescuentounidad" Type="int" Nullable="false" />
+    <Property Name="ValorUndDescuento" Type="int" Nullable="false" />
+    <Property Name="ImagenProducto" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Barrio" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="FechaCreacion" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Rol" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="LagrandeBDModelStoreContainer">
+    <EntitySet Name="Compras" EntityType="Self.Compras" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inventarios" EntityType="Self.Inventarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

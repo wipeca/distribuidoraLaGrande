@@ -1,0 +1,74 @@
+﻿@model LaGrandeSAS.Usuario
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    Usuario us = (Usuario)Session["Usuario"];
+    if (us != null)
+    {
+        var usuario = us.Nombres + " " + us.Apellidos;
+        <h2>@Html.Label("Datos del usuario:" + usuario)</h2>
+    }
+}
+<div>
+    <div class="row">
+        <div class="col s4" style="border:1px solid black; border-radius:5px" height="350">
+           
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nombres)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nombres)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Apellidos)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Apellidos)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Barrio)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Barrio)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.usuario1)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.usuario1)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.contraseña)
+                </dt>
+
+                <dd>
+                    @Html.Label("*********")
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Editar datos de usuario", "Edit", new { usuario1 = Model.usuario1 }, new { @class = "btn" })
+    </p>
+</div>

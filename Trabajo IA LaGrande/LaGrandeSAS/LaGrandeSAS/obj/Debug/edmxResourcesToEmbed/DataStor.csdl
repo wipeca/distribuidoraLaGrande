@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LagrandeBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LagrandeBDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Compras" EntityType="LagrandeBDModel.Compras" />
+    <EntitySet Name="Inventarios" EntityType="LagrandeBDModel.Inventarios" />
+    <EntitySet Name="Usuario" EntityType="LagrandeBDModel.Usuario" />
+  </EntityContainer>
+  <EntityType Name="Compras">
+    <Key>
+      <PropertyRef Name="CodigoCompra" />
+    </Key>
+    <Property Name="CodigoCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cliente" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FechaCompraCliente" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Producto" Type="Int32" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="CostoUnidad" Type="Int32" Nullable="false" />
+    <Property Name="CostoTotal" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventarios">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodigoBarras" Type="Int32" Nullable="false" />
+    <Property Name="NombreProducto" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Categorias" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Bodega" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ValorUnidad" Type="Int64" Nullable="false" />
+    <Property Name="unidades" Type="Int32" Nullable="false" />
+    <Property Name="ValorTotal" Type="Int64" Nullable="false" />
+    <Property Name="ValorDescuentounidad" Type="Int32" Nullable="false" />
+    <Property Name="ValorUndDescuento" Type="Int32" Nullable="false" />
+    <Property Name="ImagenProducto" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Apellidos" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Barrio" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="usuario1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Rol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

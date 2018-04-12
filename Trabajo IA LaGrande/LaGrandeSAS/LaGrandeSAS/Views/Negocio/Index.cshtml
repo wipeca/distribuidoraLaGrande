@@ -1,0 +1,29 @@
+﻿@model IEnumerable<object>
+@{ 
+    List<LaGrandeSAS.Inventarios> lstInventarios = Model.ToList()[0] as List<LaGrandeSAS.Inventarios>;
+    List<LaGrandeSAS.Compras> lstCompras = Model.ToList()[1] as List<LaGrandeSAS.Compras>;
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="table table-hover responsive-table">
+            <div class="row" id="Items">   
+                   @foreach (var item in lstInventarios)
+                    {
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="border-radius:5px; border: 1px solid blue; margin-right:4px; margin-bottom: 4px; ">
+                        <img src="data:image;base64,@System.Convert.ToBase64String(item.ImagenProducto)" width="120" height="120" style="margin:0 auto" />                        
+                        <p>@Html.DisplayFor(modelItem => item.NombreProducto)</p>
+                        <p>Precio: $@Html.DisplayFor(modelItem => item.ValorUnidad)</p>
+                        <p>Descuento: @Html.DisplayFor(modelItem => item.ValorDescuentounidad) % </p>
+                        <p>Precio Final: @Html.DisplayFor(modelItem => item.ValorUndDescuento)</p>                        
+                        @Html.HiddenFor(modelItem => item.ValorUnidad)
+                        <input type="button" value="agregar" title="@(item.CodigoBarras)" name="agregar" id="agregar" />                                              
+                        
+                    </div>                        
+                    }
+            </div>
+                
+            
+    </div>
